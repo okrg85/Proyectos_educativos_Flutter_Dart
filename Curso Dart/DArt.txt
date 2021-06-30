@@ -1,0 +1,268 @@
+void main() {
+  int number    = 3;
+  bool isOk     = true;
+  double price  = 20.3356;
+  String phrase = "Hello World";
+  print("number $number");
+  print("isOk   $isOk");
+  print("price  $price");
+  print("phrase $phrase");
+  
+  var name = "Oscar";
+  print(name.runtimeType);
+}
+
+
+void main() {
+  int age = 18;
+  print("age $age");
+  age = 45;
+  print("age $age");
+  //datos constantes e inmutables
+  final int age1 = 18;
+  final DateTime date = Datetime.now();
+  const  int age2 = 2020;
+  const String apihost = "https://miapi.com/"
+}
+
+void main() {
+  //dynamic se usa para usar la apiresponse de la app
+ dynamic myVar ="oscar";
+  print(myVar.length);
+  myVar = "Oscar";
+  print(myVar.runtimeType);
+  myVar = false;
+  print(myVar.runtimeType);
+}
+
+void main() {
+  //convertir un dato dinamico a uno implisito
+dynamic apiResponse = [2,4,3,1];
+  List<int> data = apiResponse;
+  print(data.last);
+}
+
+
+void main() {
+  //nombrar las vriables de forma correcta
+ String persoNameCountry = "Oscar";
+}
+
+###funciones ####
+void main() {
+  printDate();
+  int total = sum(10,2,"Sumando 10 mas 2");
+  print("La suma es: $total");
+}
+
+void printDate() {
+  print(DateTime.now());
+}
+
+//si no se especifica el tipo de dato de retorno por defecto sera un dato Dynamic
+int sum(int num1,int num2, String message ){
+  print(message);
+  int value = num1+num2;
+  return value;
+}
+
+#######parametros opcionales#############3
+void main() {
+  //aqui solo va Hola sin el parametro opcional message
+  printDate("Hola Oscar ", 29);
+  int total = sum(10, 2, message: "lala land", date: DateTime.now());
+  print("La suma es: $total");
+}
+//al usar corchetes no se debe de pasar el valor del parametro opcional en este caso message
+void printDate([ String message, int age ]) {
+  print(message);
+  print(DateTime.now());
+}
+
+// se usa si no se especifica el tipo de dato de retorno, recomendacion usar llaves para paremetros opcionales 
+int sum(int num1, int num2, {String message, DateTime date}) {
+  print(message);
+  int value = num1 + num2;
+  return value;
+}
+
+#############Clases##################333
+void main() {
+  //definimos la instancia de la clase VehiculoPais
+  Vehiculo miVehiculo = new Vehiculo(
+    placa: "Prys1234",
+    modelo: "Ratson",
+    marca: "KIA",
+    year: 2021,
+  );
+  print(miVehiculo.placa);
+  print(miVehiculo.modelo);
+  print(miVehiculo.marca);
+  print(miVehiculo.year);
+  //esta es una forma para poder pasar los valores de la clase a constructor.
+  // miVehiculo.placa = "Prys1234";
+  //miVehiculo.modelo = "Ratson";
+  //miVehiculo.marca = "KIA";
+  //miVehiculo.year = 2021;
+}
+
+//clases publica con Mayuscula privada con Minuscula
+
+class Vehiculo {
+  String placa;
+  String modelo;
+  String marca;
+  int year;
+
+  /*se inicializa de esta forma los valores */ Vehiculo({
+    this.placa,
+    this.modelo,
+    this.marca,
+    this.year,
+  });
+
+  //Se pasa los valores en forma automatica al constructor y se inicializan
+  /*Vehiculo(String placa, String marca, String modelo, int year){
+    //se inicializan los valores 
+    this.placa=placa;
+    this.marca=marca;
+    this.modelo=modelo;
+    this.year=year;
+  }*/
+
+}
+
+
+void main() {
+  //definimos la instancia de la clase VehiculoPais
+  Vehiculo miVehiculo = new Vehiculo(
+    placa: "Prys1234",
+    modelo: "Ratson",
+    marca: "KIA",
+    year: 2021,
+  );
+  
+  
+  
+  print(miVehiculo.placa);
+  print(miVehiculo.modelo);
+  print(miVehiculo.marca);
+  print(miVehiculo.year);
+  
+  miVehiculo= miVehiculo.copyWith(placa:"PKSKS14569",year: 2022,);
+  print(miVehiculo.placa);
+  print(miVehiculo.year);
+  
+  //esta es una forma para poder pasar los valores de la clase a constructor.
+  // miVehiculo.placa = "Prys1234";
+  //miVehiculo.modelo = "Ratson";
+  //miVehiculo.marca = "KIA";
+  //miVehiculo.year = 2021;
+}
+
+
+########################Cambiar los valores de la clase#######################
+//clases publica con Mayuscula privada con Minuscula
+
+class Vehiculo {
+ final String placa;
+ final String modelo;
+ final String marca;
+ final int year;
+
+  /*se inicializa de esta forma los valores */ Vehiculo({
+    this.placa,
+    this.modelo,
+    this.marca,
+    this.year,
+  });
+  
+  Vehiculo copyWith({
+    String placa,
+    String marca,
+    String modelo,
+    int    year,
+  }){
+    return Vehiculo(
+     placa: placa ??this.placa,
+     marca: marca ?? this.marca,
+     modelo: modelo ?? this.modelo,
+     year: year ?? this.year, 
+     
+    );
+  }
+
+  //Se pasa los valores en forma automatica al constructor y se inicializan
+  /*Vehiculo(String placa, String marca, String modelo, int year){
+    //se inicializan los valores 
+    this.placa=placa;
+    this.marca=marca;
+    this.modelo=modelo;
+    this.year=year;
+  }*/
+
+}
+
+
+
+void main() {
+  //definimos la instancia de la clase VehiculoPais
+  Vehiculo miVehiculo = new Vehiculo(
+    placa: "Prys1234",
+    modelo: "Ratson",
+    marca: "KIA",
+    year: 2021,
+  );
+  
+  
+  print(miVehiculo.toString());
+ 
+  miVehiculo= miVehiculo.copyWith(placa:"PKSKS14569",year: 2022,);
+  
+ print(miVehiculo.toString());
+  
+
+}
+
+//clases publica con Mayuscula privada con Minuscula
+
+class Vehiculo {
+ final String placa;
+ final String modelo;
+ final String marca;
+ final int year;
+
+  /*se inicializa de esta forma los valores */ Vehiculo({
+    this.placa,
+    this.modelo,
+    this.marca,
+    this.year,
+  });
+  
+  Vehiculo copyWith({
+    String placa,
+    String marca,
+    String modelo,
+    int    year,
+  }){
+    return Vehiculo(
+     placa: placa ??this.placa,
+     marca: marca ?? this.marca,
+     modelo: modelo ?? this.modelo,
+     year: year ?? this.year, 
+     
+    );
+  }
+
+ 
+//una sobrecarga a to string
+  @override
+  String toString(){
+    return"""
+placa: $placa
+marca: $marca
+modelo: $modelo
+year:  $year
+    """; 
+  }
+}
